@@ -6,4 +6,23 @@ Main purpose: make possible to manipulate routes in different formats and enviro
 
 For example: array to object...
 
-TODO: //
+Transform this:
+```php
+$router->add('/admin/users/my-profile', [
+    'controller' => 'users',
+    'action'     => 'profile',
+]);
+```
+
+To this:
+```php
+$routes = [
+    '/admin/users/my-profile' => [
+        'methods' => '*',
+        'paths' => [
+            'controller' => 'users',
+            'action'     => 'profile',
+        ],
+    ],
+];
+```
