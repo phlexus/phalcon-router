@@ -1,5 +1,8 @@
 {
     "name": "phlexus/phalcon-router",
+    "require": {
+        "ext-phalcon": "*"
+    },
     "require-dev": {
         "phpunit/phpunit": "^8"
     }
