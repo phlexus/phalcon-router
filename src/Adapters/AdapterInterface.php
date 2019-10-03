@@ -12,4 +12,10 @@ interface AdapterInterface
      * @return AdapterInterface
      */
     public function add(string $pattern, array $paths, $httpMethods = ['*']);
+
+    public function get(string $pattern);
+
+    public function has(string $pattern);
+
+    public function getRoutes(): array;
 }

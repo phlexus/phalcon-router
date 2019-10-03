@@ -6,15 +6,47 @@ namespace Phlexus\PhalconRouter\Adapters;
 class ArrayAdapter implements AdapterInterface
 {
     /**
+     * @var array
+     */
+    protected $routes;
+
+    /**
      * @param string $pattern
      * @param array $paths
      * @param array|string $httpMethods
-     * @return AdapterInterface
+     * @return void
      */
-    public function add(string $pattern, array $paths, $httpMethods = ['*'])
+    public function add(string $pattern, array $paths, $httpMethods = ['*']): void
     {
-        // TODO:
+        $this->routes[$pattern] = [
+            'paths' => $paths,
+            'methods' => $httpMethods,
+        ];
+    }
 
-        return $this;
+    /**
+     * @param string $pattern
+     * @return array|null
+     */
+    public function get(string $pattern)
+    {
+        return $this->routes[$pattern] ?? null;
+    }
+
+    /**
+     * @param string $pattern
+     * @return bool
+     */
+    public function has(string $pattern): bool
+    {
+        return isset($this->routes[$pattern]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoutes(): array
+    {
+        return $this->routes;
     }
 }
