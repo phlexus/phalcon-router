@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\PhalconRouter;
 
 use Phlexus\PhalconRouter\Adapters\AdapterInterface;
+use RouterFiller;
 
 class PhalconRouter
 {
@@ -15,21 +16,39 @@ class PhalconRouter
     /**
      * PhalconRouter constructor.
      *
-     * @param string $adapter
-     * @param array $routes
+     * @param AdapterInterface $adapter
      */
-    public function __construct(string $adapter, array $routes = [])
+    public function __construct(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
     }
 
-    public function addRoute()
+    /**
+     * Get current adapter object
+     *
+     * @return AdapterInterface
+     */
+    public function getAdapter(): AdapterInterface
     {
-
+        return $this->adapter;
     }
 
-    public function fillRouter()
+    /**
+     * @param string $pattern
+     * @param array $paths
+     * @param array $httpMethods
+     */
+    public function addRoute(string $pattern, array $paths, $httpMethods = ['*']): void
     {
+        $this->adapter->add($pattern, $paths, $httpMethods);
+    }
 
+    /**
+     * Fill Phalcon Router
+     */
+    public function fillRouter(): void
+    {
+        $routes = $this->adapter->getRoutes();
+        (new RouterFiller($routes))->fill();
     }
 }
