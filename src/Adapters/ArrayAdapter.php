@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phlexus\PhalconRouter\Adapters;
 
-class ArrayAdapter extends AbstractAdapter implements AdapterInterface
+class ArrayAdapter implements AdapterInterface
 {
     /**
      * @param string $pattern
