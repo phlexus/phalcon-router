@@ -1,5 +1,6 @@
 {
     "name": "phlexus/phalcon-router",
+    "license": "BSD-3-Clause",
     "require": {
         "ext-phalcon": "*"
     },
